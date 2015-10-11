@@ -25,7 +25,7 @@ void LinearList<LinearType, MAXSIZE>::Insert(LinearType x, int i)
 	}
 	else
 	{
-		for(j = len + 1; j >= i; j--)
+		for(j = len; j >= i; j--)
 		{
 			data[j] = data[j-1];	//数据后移
 		}
@@ -56,8 +56,49 @@ int LinearList<LinearType, MAXSIZE>::Deleted(int i)
 }
 
 template<class LinearType, int MAXSIZE>
-int LinearList<LinearType, MAXSIZE>::Search(LinearType X)
+int* LinearList<LinearType, MAXSIZE>::Search(LinearType X)
 {
 	//返回值为x的所有数据元素的位序值
-	
+	int j;
+	int Got = 0;	//判断是否有匹配元素
+	LinearType mGot_tmp[len];	//创建一个临时二维数组，储存匹配序号
+	for (j = 0; j < len; j++)
+	{
+		if (data[j] == x)
+		{
+			mGot_tmp[Got] = j + 1;
+			Got++;
+		}
+	}
+	LinearType* mGot = new LinearType[Got];
+	if (Got == 0)
+	{
+		cout << "no match" << endl;
+		return mGot;
+	}
+	else
+	{
+		return mGot;
+	}
+}
+
+template<class LinearType, int MAXSIZE>
+LinearType LinearList<LinearType, MAXIZE>::Get(int i)
+{
+	//取得第i个元素
+	if ((i < 1)||(i > len))
+	{
+		cout << "position is not correct!" << endl;
+		return NULL;
+	}
+	else
+	{
+		return data[i-1];
+	}
+}
+
+template<class LinearType, int MAXSIZE>
+int LinearList<LinearType, MAXSIZE>::Length()
+{
+	return len;
 }
