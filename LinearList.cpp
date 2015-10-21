@@ -9,7 +9,7 @@ void LinearList<LinearType, MAXSIZE>::Initiate()
 }
 
 template<class LinearType, int MAXSIZE>
-void LinearList<LinearType, MAXSIZE>::Insert(LinearType x, int i)
+int LinearList<LinearType, MAXSIZE>::Insert(LinearType x, int i)
 {
 	//在线性表第i个元素之前插入一个新的数据元素x
 	int j;
