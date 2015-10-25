@@ -1,4 +1,9 @@
-/*脚本名称：线性表*/
+/*
+*函数介绍：线性表
+*输入参数：
+*输出参数：
+*返回类型：
+*/
 template <class LinearType, int MAXSIZE>
 class LinearList
 {
