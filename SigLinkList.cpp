@@ -149,3 +149,108 @@ Item *Link<DataType>:: Locatei(int i)
 		return NULL;
 	}
 }
+template<class DataType>
+Item *Link<DataType>:: Locatex(DataType x)
+{
+	// 按值查询定位
+	Item *p;
+	p = head->next;
+	while ((p!=NULL)&&(p->data!=x))
+	{
+		p = p->next;
+	}
+	if(p)
+	{
+		return p;
+	}
+	else
+	{
+		cout << x << "is not exist!" << endl;
+		return NULL;
+	}
+}
+template<class DataType>
+DataType Link:: Get(int i)
+{
+	// 取第i个位置上的元素
+	int j;
+	Item *p;
+	j = 1;
+	p = head -> next;
+	while((j < i)&&(p != NULL))
+	{
+		j++;
+		p = p->next;
+	}
+	if ((p == NULL)||(j > i))
+	{
+		cout << "position is not correct!" << endl;
+		return NULL;
+	}
+	else return p->data;
+}
+template<class DataType>
+bool Link:: Insert(DataType x, int i)
+{
+	// 前插节点
+	Item *p, *s;
+	p = Locatei(i - 1);
+	if (p == NULL)
+	{
+		cout << "position is not correct!" << endl;
+		return false;
+	}
+	s = new Item();
+	s->data = x;
+	s->next = p->next;
+	p->next = s;
+	return true;
+}
+template<class DataType>
+bool Link<DataType>:: Delete(int i)
+{
+	// 删除节点
+	Item *p = Locatei(i - 1);
+	Item *q;
+	if(p == NULL)
+	{
+		cout << "position is not correct!" << endl;
+		return false;
+	}
+	q = p->next;
+	if(q!=NULL)
+	{
+		p->next = q->next;
+		delete q;
+		return true;
+	}
+	else 
+	{
+		cout << "position is not correct!" << endl;
+		return false;
+	}
+}
+template<class DataType>
+void Link<DataType>:: Print()
+{
+	// 打印
+	Item *p;
+	p = head->next;
+	while(p!=NULL)
+	{
+		cout << p->data << " ";
+		p = p->next;
+	}
+	cout << endl;
+}
+void Link:: DeleteAll()
+{
+	Item *p = head, *q;
+	while (p != NULL)
+	{
+		q = p->next;
+		delete p;
+		p = q;
+	}
+	head = NULL;
+}
